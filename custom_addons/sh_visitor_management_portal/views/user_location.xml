@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="sh_visitor_management_user_location" model="ir.ui.view">
+        <field name="name">res.user.location</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"></field>
+        <field name="arch" type="xml">
+            <field name="tz" position="after">
+                <field name="current_location_boolean" invisible="1" />
+                <field name="current_location_id" attrs="{'invisible':[('current_location_boolean','=',False)]}" />
+            </field>
+        </field>
+    </record>
+</odoo>

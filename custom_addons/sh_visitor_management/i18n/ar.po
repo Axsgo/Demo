@@ -1,0 +1,595 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sh_visitor_management
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.1alpha1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-09-26 12:14+0000\n"
+"PO-Revision-Date: 2020-09-26 12:14+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__company_id
+msgid " Company "
+msgstr " شركة "
+
+#. module: sh_visitor_management
+#: model:ir.actions.report,print_report_name:sh_visitor_management.visitor_report
+msgid "'Print Pass - %s' % (object.name).replace('/', '')"
+msgstr "'Print Pass - %s' % (object.name).replace('/', '')"
+
+#. module: sh_visitor_management
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management.sh_visitor_management_report
+msgid "<b>Check In : </b>"
+msgstr "<b>تحقق في:</b>"
+
+#. module: sh_visitor_management
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management.sh_visitor_management_report
+msgid "<b>Check Out : </b>"
+msgstr "<b>الدفع:</b>"
+
+#. module: sh_visitor_management
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management.sh_visitor_management_report
+msgid "<b>Contact Details :</b>"
+msgstr "<b>بيانات المتصل:</b>"
+
+#. module: sh_visitor_management
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management.sh_visitor_management_report
+msgid "<b>Purpose :</b>"
+msgstr "<b>غرض:</b>"
+
+#. module: sh_visitor_management
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management.sh_visitor_management_report
+msgid "<b>Visit Details :</b>"
+msgstr "<b>تفاصيل الزيارة:</b>"
+
+#. module: sh_visitor_management
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management.sh_visitor_management_report
+msgid "<b>Visitor Details :</b>"
+msgstr "<b>تفاصيل الزائر:</b>"
+
+#. module: sh_visitor_management
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management.sh_visitor_management_report
+msgid "<strong>Company</strong>"
+msgstr "<strong>شركة</strong>"
+
+#. module: sh_visitor_management
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management.sh_visitor_management_report
+msgid "<strong>Department</strong>"
+msgstr "<strong>قسم</strong>"
+
+#. module: sh_visitor_management
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management.sh_visitor_management_report
+msgid "<strong>Email</strong>"
+msgstr "<strong>البريد الإلكتروني</strong>"
+
+#. module: sh_visitor_management
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management.sh_visitor_management_report
+msgid "<strong>Employee</strong>"
+msgstr "<strong>موظف</strong>"
+
+#. module: sh_visitor_management
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management.sh_visitor_management_report
+msgid "<strong>Mobile</strong>"
+msgstr "<strong>التليفون المحمول</strong>"
+
+#. module: sh_visitor_management
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management.sh_visitor_management_report
+msgid "<strong>Name</strong>"
+msgstr "<strong>اسم</strong>"
+
+#. module: sh_visitor_management
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management.sh_visitor_management_report
+msgid "<strong>Phone</strong>"
+msgstr "<strong>هاتف</strong>"
+
+#. module: sh_visitor_management
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management.sh_visitor_management_report
+msgid "<strong>Reference</strong>"
+msgstr "<strong>مرجع</strong>"
+
+#. module: sh_visitor_management
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management.sh_visitor_management_report
+msgid "<strong>Visit Category</strong>"
+msgstr "<strong>زيارةالفئة</strong>"
+
+#. module: sh_visitor_management
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management.sh_visitor_management_report
+msgid "<strong>Visit Destination</strong>"
+msgstr "<strong>زيارة الوجهة</strong>"
+
+#. module: sh_visitor_management
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management.sh_visitor_management_report
+msgid "<strong>Visit Type</strong>"
+msgstr "<strong>نوع الزيارة</strong>"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__access_warning
+msgid "Access warning"
+msgstr "Accesswarning"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__message_needaction
+msgid "Action Needed"
+msgstr "أنشطة"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__activity_ids
+msgid "Activities"
+msgstr "أنشطة"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "أكتيفيتيكسسيبشنديكور"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__activity_state
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "ActivityTypeIcon"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__message_attachment_count
+msgid "Attachment Count"
+msgstr "AttachmentCount"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__campaign_id
+msgid "Campaign"
+msgstr "حملة"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__check_in
+msgid "Check In"
+msgstr "تحقق في"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__check_in_str
+msgid "Check In string"
+msgstr "الخيط"
+
+#. module: sh_visitor_management
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management.sh_visitor_details_form_view
+msgid "Check In/Out"
+msgstr "تسجيل الدخول / الخروج"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__check_out
+msgid "Check Out"
+msgstr "الدفع"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__check_out_str
+msgid "Check Out string"
+msgstr "الدفع"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__company
+msgid "Company"
+msgstr "شركة"
+
+#. module: sh_visitor_management
+#: model:ir.ui.menu,name:sh_visitor_management.sh_visitor_management_config_menu
+msgid "Configuration"
+msgstr "ترتيب"
+
+#. module: sh_visitor_management
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management.sh_visitor_details_form_view
+msgid "Contact Details"
+msgstr "بيانات المتصل"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_category__create_uid
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__create_uid
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_type__create_uid
+msgid "Created by"
+msgstr "انشأ من قبل"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_category__create_date
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__create_date
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_type__create_date
+msgid "Created on"
+msgstr "تم إنشاؤها على"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,help:sh_visitor_management.field_sh_visitor_details__access_url
+msgid "Customer Portal URL"
+msgstr "العملاء"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__department
+msgid "Department"
+msgstr "قسم"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_category__display_name
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__display_name
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_type__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__duration
+msgid "Duration"
+msgstr "المدة الزمنية"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__mail
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__employee_id
+msgid "Employee"
+msgstr "موظف"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__message_follower_ids
+msgid "Followers"
+msgstr "متابعون"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "المتابعون (القنوات)"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,help:sh_visitor_management.field_sh_visitor_details__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Fontawesomeicone.g.fa- مهام"
+
+#. module: sh_visitor_management
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management.sh_visitor_details_search_view
+msgid "Group By"
+msgstr "مجموعة من"
+
+#. module: sh_visitor_management
+#: model:ir.module.category,description:sh_visitor_management.module_category_sh_visitor_management
+msgid "Helps you manage visitor details."
+msgstr "المساعدة في مراجعة التفاصيل."
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_category__id
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__id
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_type__id
+msgid "ID"
+msgstr "هوية شخصية"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__activity_exception_icon
+msgid "Icon"
+msgstr "أيقونة"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,help:sh_visitor_management.field_sh_visitor_details__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "النشاط الاستثنائي."
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,help:sh_visitor_management.field_sh_visitor_details__message_needaction
+#: model:ir.model.fields,help:sh_visitor_management.field_sh_visitor_details__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "إذا تم فحصها ، فإن الرسائل الجديدة تتطلب انتباهك."
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,help:sh_visitor_management.field_sh_visitor_details__message_has_error
+#: model:ir.model.fields,help:sh_visitor_management.field_sh_visitor_details__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا تم التحقق منها ، فهناك خطأ في تسليم بعض الرسائل."
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__message_is_follower
+msgid "Is Follower"
+msgstr "IsFollower"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_category____last_update
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details____last_update
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_type____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل ل"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_category__write_uid
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__write_uid
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_type__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_category__write_date
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__write_date
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_type__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث:"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "مرفق الرئيسي"
+
+#. module: sh_visitor_management
+#: model:res.groups,name:sh_visitor_management.group_sh_visitor_management_manager
+msgid "Manager"
+msgstr "مدير"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__medium_id
+msgid "Medium"
+msgstr "متوسط"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__message_has_error
+msgid "Message Delivery error"
+msgstr "رسالة الخطأ تسليم"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__message_ids
+msgid "Messages"
+msgstr "رسائل"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__mobile
+msgid "Mobile"
+msgstr "التليفون المحمول"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_category__name
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__visitor_name
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_type__name
+msgid "Name"
+msgstr "اسم"
+
+#. module: sh_visitor_management
+#: code:addons/sh_visitor_management/models/visitor_details.py:0
+#: code:addons/sh_visitor_management/models/visitor_details.py:0
+#: code:addons/sh_visitor_management/models/visitor_details.py:0
+#: code:addons/sh_visitor_management/models/visitor_details.py:0
+#, python-format
+msgid "New"
+msgstr "جديد"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "آخر الموعد النهائي المقبل"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__activity_summary
+msgid "Next Activity Summary"
+msgstr "ملخص آخر المقبل"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__activity_type_id
+msgid "Next Activity Type"
+msgstr "التالي آخر نوع"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد من تطبيقات"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__message_has_error_counter
+msgid "Number of errors"
+msgstr "عدد من الأخطاء"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,help:sh_visitor_management.field_sh_visitor_details__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "عدد الرسائل التي تتطلب الرد"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,help:sh_visitor_management.field_sh_visitor_details__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل التي بها خطأ في التسليم"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,help:sh_visitor_management.field_sh_visitor_details__message_unread_counter
+msgid "Number of unread messages"
+msgstr "عدد الرسائل غير المقروءة"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__partner_id
+msgid "Partner"
+msgstr "شريك"
+
+#. module: sh_visitor_management
+#: model:ir.actions.report,name:sh_visitor_management.visitor_report
+msgid "Pass Details"
+msgstr "تفاصيل المرور"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__phone
+msgid "Phone"
+msgstr "هاتف"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__access_url
+msgid "Portal Access URL"
+msgstr "URL الوصول البوابة"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__purpose
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management.sh_visitor_details_form_view
+msgid "Purpose"
+msgstr "غرض"
+
+#. module: sh_visitor_management
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management.sh_visitor_details_form_view
+msgid "Purpose for Visit..."
+msgstr "الغرض من زيارة ..."
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__reference
+msgid "Reference"
+msgstr "مرجع"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__user_id
+msgid "Responsible"
+msgstr "مسؤول"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__activity_user_id
+msgid "Responsible User"
+msgstr "العضو المسؤول"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "خطأ SMS تسليم"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__access_token
+msgid "Security Token"
+msgstr "رمز الأمان"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__source_id
+msgid "Source"
+msgstr "مصدر"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,help:sh_visitor_management.field_sh_visitor_details__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"وضع على أساس الأنشطة"
+"يتم تمرير تاريخ الاستحقاق بالفعل: تأخر"
+"اليوم: تاريخ آخر غير اليوم"
+"التخطيط: الأنشطة المستقبل."
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,help:sh_visitor_management.field_sh_visitor_details__campaign_id
+msgid ""
+"This is a name that helps you keep track of your different campaign efforts,"
+" e.g. Fall_Drive, Christmas_Special"
+msgstr ""
+"هذا هو الاسم الذي يساعدك على الحفاظ على تتبع جهود الحملات المختلفة الخاصة بك،"
+"مثلا Fall_Drive، Christmas_Special"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,help:sh_visitor_management.field_sh_visitor_details__medium_id
+msgid "This is the method of delivery, e.g. Postcard, Email, or Banner Ad"
+msgstr "طريقة التسليم هذه ، على سبيل المثال ، بطاقة بريدية أو بريد إلكتروني أو إعلان بانر"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,help:sh_visitor_management.field_sh_visitor_details__source_id
+msgid ""
+"This is the source of the link, e.g. Search Engine, another domain, or name "
+"of email list"
+msgstr ""
+"هذا هو مصدر الارتباط ، على سبيل المثال ، محرك البحث ، أو نطاق آخر ، أو الاسم"
+"من قائمة البريد الإلكتروني"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,help:sh_visitor_management.field_sh_visitor_details__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "اكتب النشاط استثناء على الاطلاق."
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__message_unread
+msgid "Unread Messages"
+msgstr "رسائل غير مقروءة"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "الرسائل غير المقروءة عداد"
+
+#. module: sh_visitor_management
+#: model:res.groups,name:sh_visitor_management.group_sh_visitor_management_user
+msgid "User"
+msgstr "المستعمل"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__visit_categ_id
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management.sh_visitor_details_search_view
+msgid "Visit Category"
+msgstr "زيارة الفئة"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__destination_id
+msgid "Visit Destination"
+msgstr "زيارة الوجهة"
+
+#. module: sh_visitor_management
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management.sh_visitor_details_form_view
+msgid "Visit Details"
+msgstr "زيارة تفاصيل"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__visit_type_id
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management.sh_visitor_details_search_view
+msgid "Visit Type"
+msgstr "زيارة النوع"
+
+#. module: sh_visitor_management
+#: model:ir.ui.menu,name:sh_visitor_management.sh_visitor_management_visitor_main_menu
+msgid "Visitor"
+msgstr "زائر"
+
+#. module: sh_visitor_management
+#: model:ir.actions.act_window,name:sh_visitor_management.sh_visitor_category_action
+#: model:ir.model,name:sh_visitor_management.model_sh_visitor_category
+#: model:ir.ui.menu,name:sh_visitor_management.sh_visitor_category_menu
+msgid "Visitor Category"
+msgstr "الزوار الفئة"
+
+#. module: sh_visitor_management
+#: model:ir.actions.act_window,name:sh_visitor_management.sh_visitor_details_action
+#: model:ir.model,name:sh_visitor_management.model_sh_visitor_details
+#: model:ir.ui.menu,name:sh_visitor_management.sh_visitor_management_visitor_details_menu
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management.sh_visitor_details_form_view
+msgid "Visitor Details"
+msgstr "تفاصيل الزوار"
+
+#. module: sh_visitor_management
+#: model:ir.module.category,name:sh_visitor_management.module_category_sh_visitor_management
+#: model:ir.ui.menu,name:sh_visitor_management.sh_visitor_management_main_menu
+msgid "Visitor Management"
+msgstr "إدارة الزوار"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__name
+msgid "Visitor Serial Number"
+msgstr "الزوار الرقم التسلسلي"
+
+#. module: sh_visitor_management
+#: model:ir.actions.act_window,name:sh_visitor_management.sh_visitor_type_action
+#: model:ir.model,name:sh_visitor_management.model_sh_visitor_type
+#: model:ir.ui.menu,name:sh_visitor_management.sh_visitor_type_menu
+msgid "Visitor Type"
+msgstr "نوع الزوار"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,field_description:sh_visitor_management.field_sh_visitor_details__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع"
+
+#. module: sh_visitor_management
+#: model:ir.model.fields,help:sh_visitor_management.field_sh_visitor_details__website_message_ids
+msgid "Website communication history"
+msgstr "موقع تاريخ الاتصال"

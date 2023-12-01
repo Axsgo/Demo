@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Details Tree View -->
+    <record id="meeting_call_tree_view" model="ir.ui.view">
+        <field name="name">meeting.call.tree</field>
+        <field name="model">meeting.call</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" string='Meeting Invite No'/>
+                <field name="visitor_name" string='Visitor Name'/>
+                <field name="employee_id" />
+                <field name="visit_categ_id" />
+                <field name="visit_type_id" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="meeting_call_form_view" model="ir.ui.view">
+        <field name="name">meeting.call.form</field>
+        <field name="model">meeting.call</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name = "send_mail" type = "object" string = "Send Mail" states = "draft" class = "oe_highlight"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,meeting_invite_sent,invite_agreed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1" />
+                        </h1>
+                    </div>
+                    <group>
+                    </group>
+                    <h2 style="color:#556ee6 !important;font-weight:bold;text-align:left">Call For Meeting</h2>
+                    <group >
+                    </group>
+                    <group>
+                        <group string="Visitor Details" >
+                            <!-- <field name="customer_type" widget="radio" options="{'horizontal': true}" attrs="{'readonly':[('state','!=','draft')]}"/> -->
+                            <field name="partner_id" attrs="{'readonly':[('state','=','invite_agreed')]}" />
+                            <field name="visitor_name" attrs="{'readonly':[('state','=','invite_agreed')]}"/>
+                            <field name="company" attrs="{'readonly':[('state','=','invite_agreed')]}"/>
+                            <field name="phone" attrs="{'readonly':[('state','=','invite_agreed')]}"/>
+                            <field name="mobile" attrs="{'readonly':[('state','=','invite_agreed')]}"/>
+                            <field name="mail" attrs="{'readonly':[('state','=','invite_agreed')]}"/>
+                        </group>
+                        <group string="Visit Details" >
+                            <!-- <field name="destination_id" readonly="0" attrs="{'readonly':[('state','!=','draft')]}"/> -->
+                            <field name="visit_type_id" attrs="{'readonly':[('state','=','invite_agreed')]}"/>
+                            <field name="visit_categ_id" attrs="{'readonly':[('state','=','invite_agreed')]}"/>
+                            <field name="meeting_date" attrs="{'readonly':[('state','=','invite_agreed')]}"/>
+                            <field name="meeting_time" attrs="{'readonly':[('state','=','invite_agreed')]}"/>
+                        </group>
+                        <group string="Contact Details" >
+                            <!-- <field name="reference" attrs="{'readonly':[('state','!=','draft')]}"/> -->
+                            <field name="employee_id" attrs="{'readonly':[('state','=','invite_agreed')]}"/>
+                            <field name="department" readonly="1"/>
+                            <!-- <field name="user_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}" attrs="{'readonly':[('state','!=','draft')]}"/> -->
+                        </group>
+                    </group>
+                    <notebook >
+                        <page name="visit_purpose" string="Purpose">
+                            <form>
+                                <field name="purpose" placeholder="Purpose for Visit..." attrs="{'readonly':[('state','=','invite_agreed')]}"/>
+                            </form>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="meeting_call_search_view" model="ir.ui.view">
+        <field name="name">meeting.call.search</field>
+        <field name="model">meeting.call</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Meeting Invite No" filter_domain="[('name', 'ilike', self)]" />
+                <field name="visitor_name" filter_domain="['|','|','|',('visitor_name', 'ilike', self),('employee_id', 'ilike', self),('visit_categ_id', 'ilike', self),('visit_type_id', 'ilike', self)]" />
+                <field name="employee_id" filter_domain="[('employee_id', 'ilike', self)]" />
+                <field name="visit_categ_id" filter_domain="[('visit_categ_id', 'ilike', self)]" />
+                <field name="visit_type_id" filter_domain="[('visit_type_id', 'ilike', self)]" />
+                <group expand="0" string="Group By">
+                    <filter string="Visit Category" name="visit_categ_id" context="{'group_by':'visit_categ_id'}" />
+                </group>
+                <group expand="0" string="Group By">
+                    <filter string="Visit Type" name="visit_type_id" context="{'group_by':'visit_type_id'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Details Action -->
+    <record id="meeting_call_action" model="ir.actions.act_window">
+        <field name="name">Call For Meeting</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">meeting.call</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="meeting_call_menu" parent="sh_visitor_management_visitor_main_menu" action="meeting_call_action" name="Call For Meeting" sequence="3"/>
+</odoo>

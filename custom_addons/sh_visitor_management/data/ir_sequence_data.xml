@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Sequences for Visitor -->
+    <record id="sh_visitor_seq" model="ir.sequence">
+        <field name="name">Visitor</field>
+        <field name="code">sh.visitor.details</field>
+        <field name="prefix">VI</field>
+        <field name="padding">3</field>
+        <field name="company_id" eval="False" />
+    </record>
+
+    <record id="meeting_request_seq" model="ir.sequence">
+        <field name="name">Meeting Request</field>
+        <field name="code">meeting.request</field>
+        <field name="prefix">MR</field>
+        <field name="padding">3</field>
+        <field name="company_id" eval="False" />
+    </record>
+
+    <record id="meeting_call_seq" model="ir.sequence">
+        <field name="name">Call For Meeting</field>
+        <field name="code">meeting.call</field>
+        <field name="prefix">CM</field>
+        <field name="padding">3</field>
+        <field name="company_id" eval="False" />
+    </record>
+
+    <record id="ax_visitor_details_mail_template" model="mail.template">
+            <field name="name">Visitor Details Confirmation Mail</field>
+            <field name="model_id" ref="sh_visitor_management.model_sh_visitor_details"/>
+            <field name="email_from">${object.env.user.partner_id.email |safe}</field>
+            <field name="email_cc"></field>
+            <field name="subject">Visitor Details Confirmation Mail - ${object.employee_id.name}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Dear ${object.employee_id.name},
+                        <br></br>
+                        <br></br>
+                        Please find the below Visitor Pass details and confirm the same,
+                        <br></br>
+                        <br></br>
+                        Thank you.
+                    </p>
+                    <br></br>
+                    <a href="/visitor/confirmation/${object.id}" style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                       Confirm
+                    </a>
+                </div>
+            </field>
+            <field name="report_template" ref="sh_visitor_management.visitor_report"/>
+            <field name="report_name">'Print Pass - ${(object.name or '').replace('/','_')}'</field>
+            <field name="lang">${object.user_id.lang}</field>
+            <field name="auto_delete" eval="False"/>
+        </record>
+
+        <record id="ax_meeting_call_mail_template" model="mail.template">
+            <field name="name">Meeting Invitation Mail</field>
+            <field name="model_id" ref="sh_visitor_management.model_meeting_call"/>
+            <field name="email_from">${object.employee_id.work_email |safe}</field>
+            <field name="email_cc"></field>
+            <field name="subject">Meeting Invitation Mail - ${object.partner_id.name}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Dear ${object.partner_id.name},
+                        <br></br>
+                        <br></br>
+                        You are invited for a live meeting with ${object.employee_id.name}. Kindly find the further details below and confirm the same.
+                        <br></br>
+                        Meeting Invite No : ${object.name},<br></br>
+                        Meeting Person    : ${object.employee_id.name},<br></br>
+                        Meeting Date      : ${object.meeting_date.strftime('%d/%m/%Y')},<br></br>
+                        Meeting Time      : ${object.meeting_time}.
+                        <br></br>
+                        <br></br>
+                        Thank you.
+                    </p>
+                    <br></br>
+                    <a href="/invitation/confirmation/${object.id}" style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                       Confirm
+                    </a>
+                </div>
+            </field>
+            <field name="lang">${object.user_id.lang}</field>
+            <field name="auto_delete" eval="False"/>
+        </record>
+</odoo>

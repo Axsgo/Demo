@@ -1,0 +1,710 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="assets_frontend_inherit_visitor_last" inherit_id="portal.assets_frontend" name="Visitor frontend assets">
+        <xpath expr="//script[last()]" position="after">
+            <script type="text/javascript" src="/sh_visitor_management_portal/static/src/js/script.js"></script>
+        </xpath>
+    </template>
+    <template id="sh_visitor_management_portal_menu" name="Portal layout : visitor menu entries" inherit_id="portal.portal_breadcrumbs" priority="20">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'visitor' or visitor" t-attf-class="breadcrumb-item #{'active' if not visitor else ''}">
+                <a t-if="visitor" t-attf-href="/my/visitor?{{ keep_query() }}">Visitors</a>
+                <t t-else="">Visitors</t>
+            </li>
+            <li t-if="visitor" class="breadcrumb-item active">
+                <span t-field="visitor.name" />
+            </li>
+        </xpath>
+    </template>
+
+    <template id="sh_visitor_management_portal_my_home" name="Portal My Home : visitor entries" inherit_id="portal.portal_my_home" priority="20">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Meeting Request</t>
+                <t t-set="url" t-value="'/my/visitor'" />
+                <t t-set="count" t-value="visitor_count" />
+            </t>
+        </xpath>
+    </template>
+
+    <template id="visitor_my_visitor" name="My Visitors">
+        <style>
+            .check_out_btn {
+                padding: 5px 10px;
+            }
+            #edit_btn {
+                padding: 8px 10px;
+            }
+            #print_pass {
+                padding: 8.5px 7px;
+            }
+            .js_cls_edit_pass {
+                padding: 8.5px 7px !important;
+                color: #fff;
+            }
+        </style>
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True" />
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Visitors</t>
+            </t>
+            <div class="row">
+                <div class="col-12" style="text-align: right; margin-bottom: 9px;">
+                    <button id="create_visitor_btn" class="btn btn-primary">
+                        Create
+                    </button>
+                </div>
+            </div>
+            <t t-if="grouped_visitors">
+                <t t-call="portal.portal_table">
+                    <t t-foreach="grouped_visitors" t-as="visitor">
+                        <thead>
+                            <tr t-attf-class="{{'thead-light' if not groupby == 'none' else ''}}">
+                                <th t-if="groupby == 'none'">Number</th>
+                                <th t-if="groupby == 'visit_type'">
+                                    <em class="font-weight-normal text-muted">Visit Type</em>
+                                    <span t-field="visitor[0].visit_type_id.name" />
+                                </th>
+                                <th t-if="groupby == 'visit_category'">
+                                    <em class="font-weight-normal text-muted">Visit Category</em>
+                                    <span t-esc="visitor[0].visit_categ_id.name" />
+                                </th>
+
+                                <th>Visitor Name</th>
+                                <th>Visit Type</th>
+                                <th>Visit Category</th>
+                                <th>Employee</th>
+                                <th>Check In</th>
+                                <th>Check Out</th>
+                                <th style="text-align: center;">Action</th>
+                            </tr>
+                        </thead>
+                        <t t-foreach="visitor" t-as="user_visitor">
+                            <tr>
+                                <td>
+                                    <a value="link" t-attf-href="/my/visitor/#{user_visitor.id}"><t t-esc="user_visitor.name" /></a>
+                                </td>
+                                <td><span t-field="user_visitor.visitor_name" /></td>
+                                <td><span t-field="user_visitor.visit_type_id.name" /></td>
+                                <td><span t-field="user_visitor.visit_categ_id.name" /></td>
+                                <td><span t-field="user_visitor.employee_id.name" /></td>
+                                <td><span t-field="user_visitor.check_in" t-options='{"widget": "date"}' /></td>
+                                <td><span t-field="user_visitor.check_out" t-options='{"widget": "date"}' /></td>
+                                <td>
+                                    <input type="hidden" id="visitor_id" name="visitor_id" t-att-value="user_visitor.id" />
+                                    <t t-if="not user_visitor.check_out">
+                                        <button class="btn btn-primary check_out_btn">Check Out</button>
+                                    </t>
+                                    <a class="btn btn-primary" id="print_pass" t-att-href="user_visitor.get_portal_url(report_type='pdf', download=True)" title="Print"><i class="fa fa-print"></i></a>
+                                    <button class="btn btn-primary js_cls_edit_pass" value="edit" name="edit_pass"><i class="fa fa-pencil-square-o" title="Edit"></i></button>
+                                </td>
+                            </tr>
+                        </t>
+                    </t>
+                </t>
+            </t>
+            <t t-if="not visitors">
+                <div class="alert" role="alert" style="padding: 10px;">
+                    There are currently no visitors.
+                </div>
+            </t>
+        </t>
+
+        <!-- Create Visitor Modal -->
+        <div class="modal fade in" id="create_visitor" tabindex="-1" role="dialog" aria-labelledby="create_visitor" aria-hidden="true" style="display: block;">
+            <style>
+                .form-control {
+                    height: calc(1.5em + 0.75rem + 2px);
+                }
+                .classic {
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                }
+                .fa-chevron-down {
+                    position: absolute;
+                    top: 50%;
+                    right: 6%;
+                    transform: translate(-50%, -50%);
+                    pointer-events: none;
+                    color: #757575;
+                }
+                .datetimepicker-input {
+                    border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
+                }
+                .input-group-text {
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                }
+                .container_main_1 {
+                    width: 100%;
+                    display: flex;
+                }
+                .visit_details {
+                    width: 50%;
+                    display: inline;
+                }
+                .check_date_part {
+                    width: 50%;
+                    display: inline;
+                }
+                .container_main_2 {
+                    width: 100%;
+                    display: flex;
+                }
+                .visit_type_details {
+                    width: 50%;
+                    display: inline;
+                }
+                .contact_details {
+                    width: 50%;
+                    display: inline;
+                }
+                #duration {
+                    background: #fff;
+                }
+                .check_date_part {
+                    padding-left: 14px;
+                }
+                #duration:focus {
+                    border-color: none;
+                    box-shadow: none;
+                    border-color: #ced4da;
+                }
+                @media (max-width: 770px) {
+                    .container_main_1 {
+                        display: block;
+                    }
+                    .container_main_2 {
+                        display: block;
+                    }
+                    .contact_details .col-lg-12 {
+                        padding-left: 0;
+                    }
+                }
+                @media (max-width: 767px) {
+                    .fa-chevron-down {
+                        top: 33%;
+                        right: 5%;
+                    }
+                }
+            </style>
+            <div class="modal-dialog modal-lg" style="padding: 1rem 0 !important;" id="create_modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 style="margin-bottom: 0px;">Create Meeting Request</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>×</span></button>
+                    </div>
+                    <div class="modal-body" style="padding: 0.7rem 1rem;">
+                        <div class="container_main_1">
+                            <div class="visit_details">
+                                <div class="row mb-2">
+                                    <div class="col-lg-12">
+                                        <strong style="font-size: 18px;">Visitor Details</strong>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-lg-12">
+                                        <div class="row" style="align-items: center;">
+                                            <div class="col-lg-4"><span>Partner</span></div>
+                                            <div class="col-lg-8" style="position: relative;">
+                                                <span class="fa fa-chevron-down"></span>
+
+                                                <select id="partner_id" style="width: 100%;" class="form-control classic">
+                                                    <option selected="True" value="">Choose Here...</option>
+                                                    <t t-foreach="request.env['res.partner'].sudo().search([])" t-as="partner">
+                                                        <option t-att-value="partner.id"><t t-esc="partner.name" /></option>
+                                                    </t>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-lg-12">
+                                        <div class="row" style="align-items: center;">
+                                            <div class="col-lg-4"><span>Visitor Name</span></div>
+                                            <div class="col-lg-8"><input id="visitor_name" type="text" style="width: 100%;" class="form-control" /></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-lg-12">
+                                        <div class="row" style="align-items: center;">
+                                            <div class="col-lg-4"><span>Company</span></div>
+                                            <div class="col-lg-8"><input id="visitor_company" type="text" style="width: 100%;" class="form-control" /></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-lg-12">
+                                        <div class="row" style="align-items: center;">
+                                            <div class="col-lg-4"><span>Phone</span></div>
+                                            <div class="col-lg-8"><input id="phone" type="text" style="width: 100%;" class="form-control" /></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-lg-12">
+                                        <div class="row" style="align-items: center;">
+                                            <div class="col-lg-4"><span>Mobile</span></div>
+                                            <div class="col-lg-8"><input id="mobile" type="text" style="width: 100%;" class="form-control" /></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-lg-12">
+                                        <div class="row" style="align-items: center;">
+                                            <div class="col-lg-4"><span>Email</span></div>
+                                            <div class="col-lg-8"><input id="email" type="email" style="width: 100%;" class="form-control" /></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="check_date_part">
+                                <div class="row mb-2">
+                                    <div class="col-lg-12">
+                                        <strong style="font-size: 18px;">Meeting Schedule</strong>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-lg-12 mb-2">
+                                        <div class="row" style="align-items: center;">
+                                            <div class="col-lg-4"><span>Start Time</span></div>
+                                            <div class="col-lg-8" style="position: relative;">
+                                                <div id="datetimepicker1" data-target-input="nearest" style="display: flex;">
+                                                    <input type="text" id="check_in" class="form-control datetimepicker-input o_website_form_input" data-target="#datetimepicker1" name="Custom Date &amp; Time" />
+                                                    <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                                        <div class="input-group-text">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 mb-2">
+                                        <div class="row" style="align-items: center;">
+                                            <div class="col-lg-4"><span>End Time</span></div>
+                                            <div class="col-lg-8">
+                                                <div id="datetimepicker3" data-target-input="nearest" style="display: flex;">
+                                                    <input type="text" id="check_out" class="form-control datetimepicker-input o_website_form_input" data-target="#datetimepicker3" name="Custom Date &amp; Time" />
+                                                    <div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
+                                                        <div class="input-group-text">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 mb-2">
+                                        <div class="row" style="align-items: center;">
+                                            <div class="col-lg-4"><span>Duration</span></div>
+                                            <div class="col-lg-8"><input id="duration" type="text" style="width: 100%;" class="form-control" readonly="True" /></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container_main_2">
+                            <div class="visit_type_details">
+                                <div class="row">
+                                    <div class="col-lg-12 mb-2">
+                                        <strong style="font-size: 18px;">Visit Details</strong>
+                                    </div>
+                                    <div class="col-lg-12 mb-2">
+                                        <div class="row" style="align-items: center;">
+                                            <div class="col-lg-4"><span>Visit Location</span></div>
+                                            <div class="col-lg-8" style="position: relative;">
+                                                <span class="fa fa-chevron-down"></span>
+                                                <select id="visit_dest_id" style="width: 100%;" class="form-control classic">
+                                                    <t t-foreach="request.env['res.partner'].sudo().search([])" t-as="destination">
+                                                        <t t-if="destination.id==request.env.user.current_location_id.id">
+                                                            <option t-att-selected="True" t-att-value="destination.id"><t t-esc="destination.name" /></option>
+                                                        </t>
+                                                        <t t-if="not destination.id==request.env.user.partner_id.id">
+                                                            <option t-att-value="destination.id"><t t-esc="destination.name" /></option>
+                                                        </t>
+                                                    </t>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 mb-2">
+                                        <div class="row" style="align-items: center;">
+                                            <div class="col-lg-4"><span>Visit Type</span></div>
+                                            <div class="col-lg-8" style="position: relative;">
+                                                <span class="fa fa-chevron-down"></span>
+                                                <select id="visit_type_id" style="width: 100%;" class="form-control classic">
+                                                    <t t-foreach="request.env['sh.visitor.type'].sudo().search([])" t-as="visit_type">
+                                                        <option t-att-value="visit_type.id"><t t-esc="visit_type.name" /></option>
+                                                    </t>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 mb-2">
+                                        <div class="row" style="align-items: center;">
+                                            <div class="col-lg-4"><span>Visit Category</span></div>
+                                            <div class="col-lg-8" style="position: relative;">
+                                                <span class="fa fa-chevron-down"></span>
+                                                <select id="visit_categ_id" style="width: 100%;" class="form-control classic">
+                                                    <t t-foreach="request.env['sh.visitor.category'].sudo().search([])" t-as="visit_categ_id">
+                                                        <option t-att-value="visit_categ_id.id"><t t-esc="visit_categ_id.name" /></option>
+                                                    </t>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contact_details">
+                                <div class="col-lg-12 mb-2" style="padding-right: 0;">
+                                    <strong style="font-size: 18px;">Contact Details</strong>
+                                </div>
+                                <div class="col-lg-12 mb-2" style="padding-right: 0;">
+                                    <div class="row" style="align-items: center;">
+                                        <div class="col-lg-4"><span>Reference</span></div>
+                                        <div class="col-lg-8"><input id="reference" type="text" style="width: 100%;" class="form-control" /></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 mb-2" style="padding-right: 0;">
+                                    <div class="row" style="align-items: center;">
+                                        <div class="col-lg-4"><span>Employee</span></div>
+                                        <div class="col-lg-8" style="position: relative;">
+                                            <span class="fa fa-chevron-down"></span>
+                                            <select id="employee_id" style="width: 100%;" class="form-control classic">
+                                                <option selected="True" value="">Choose Here...</option>
+                                                <t t-foreach="request.env['hr.employee'].sudo().search([])" t-as="employee_id">
+                                                    <option t-att-value="employee_id.id"><t t-esc="employee_id.name" /></option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 mb-2" style="padding-right: 0;"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12" style="margin-bottom: 10px;">
+                                <strong style="font-size: 18px;">Purpose</strong>
+                            </div>
+                            <div class="col-lg-12">
+                                <textarea id="purpose" type="text" style="width: 100%;" class="form-control" placeholder="Type here..." />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="submit_btn" type="button" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Form Template -->
+
+    <template id="portal_visitor_form_template" name="Visitor Portal Template" inherit_id="portal.portal_sidebar" primary="True">
+        <xpath expr="//div[hasclass('o_portal_sidebar')]" position="inside">
+            <div class="row mt16 o_portal_sale_sidebar">
+                <!-- Sidebar -->
+                <t t-call="portal.portal_record_sidebar">
+                    <t t-set="classes" t-value="'col-lg-auto d-print-none'" />
+                    <t t-set="entries">
+                        <ul class="list-group list-group-flush flex-wrap flex-row flex-lg-column">
+                            <li class="list-group-item flex-grow-1">
+                                <div class="o_download_pdf btn-toolbar flex-sm-nowrap">
+                                    <div class="btn-group flex-grow-1 mr-1 mb-1">
+                                        <a class="btn btn-secondary btn-block o_download_btn" t-att-href="visitor.get_portal_url(report_type='pdf', download=True)" title="Print Pass"><i class="fa fa-download" /> Print Pass</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </t>
+                </t>
+
+                <!-- Page content -->
+                <div id="visitor_content" class="col-12 col-lg justify-content-end">
+                    <div t-attf-class="card #{'pb-2' if report_type == 'html' else ''}">
+                        <div t-call="sh_visitor_management_portal.visitor_portal_content" />
+                    </div>
+
+                    <!-- chatter -->
+                    <div id="visitor_communication" class="mt-4">
+                        <h2>History</h2>
+                        <t t-call="portal.message_thread">
+                            <t t-set="object" t-value="visitor" />
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="visitor_portal_content" name="Visitor Portal Content">
+        <style>
+            .save_input_style {
+                color: black;
+                background: #fff;
+                border: 1px #ced4da solid;
+                border-radius: 5px;
+                padding: 4px 9px;
+            }
+            .save_select_style {
+                color: black;
+            }
+        </style>
+        <div id="introduction" t-attf-class="pb-2 pt-3 #{'card-header bg-white' if report_type == 'html' else ''}">
+            <h2 class="my-0">
+                <b t-esc="visitor.name" />
+            </h2>
+        </div>
+        <div class="row" style="margin-top: 16px; text-align: right; padding: 0px 12px;">
+            <div class="col-lg-12">
+                <button id="save_btn" class="btn btn-primary o_hidden">Save</button>
+                <button id="edit_btn" class="btn btn-secondary">Edit</button>
+            </div>
+        </div>
+        <div t-attf-class="#{'card-body' if report_type == 'html' else ''}">
+            <div class="row">
+                <input type="hidden" id="form_visitor_id" name="form_visitor_id" t-att-value="visitor.id" />
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <strong>Visitor Details</strong>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row mb-1" style="align-items: center;">
+                                <div class="col-lg-4 col-md-6"><strong>Partner</strong></div>
+                                <div class="col-lg-8 col-md-6 float-left">
+                                    <select id="form_partner_id" style="width: 100%;" disabled="true">
+                                        <t t-foreach="request.env['res.partner'].sudo().search([])" t-as="partner">
+                                            <t t-if="partner.id==visitor.partner_id.id">
+                                                <option t-att-selected="True" t-att-value="partner.id"><t t-esc="partner.name" /></option>
+                                            </t>
+                                            <t t-if="not partner.id==visitor.partner_id.id">
+                                                <option t-att-value="partner.id"><t t-esc="partner.name" /></option>
+                                            </t>
+                                        </t>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row mb-1" style="align-items: center;">
+                                <div class="col-lg-4 col-md-6"><strong>Visitor Name</strong></div>
+                                <div class="col-lg-8 col-md-6 float-left">
+                                    <input readonly="true" type="text" id="form_visitor_name" name="form_visitor_name" t-att-value="visitor.visitor_name" style="width: 100%;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row mb-1" style="align-items: center;">
+                                <div class="col-lg-4 col-md-6"><strong>Company</strong></div>
+                                <div class="col-lg-8 col-md-6 float-left">
+                                    <input readonly="true" type="text" id="form_company" name="form_company" t-att-value="visitor.company" style="width: 100%;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row mb-1" style="align-items: center;">
+                                <div class="col-lg-4 col-md-6"><strong>Phone</strong></div>
+                                <div class="col-lg-8 col-md-6 float-left">
+                                    <input readonly="true" type="text" id="form_phone" name="form_phone" t-att-value="visitor.phone" style="width: 100%;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row mb-1" style="align-items: center;">
+                                <div class="col-lg-4 col-md-6"><strong>Mobile</strong></div>
+                                <div class="col-lg-8 col-md-6 float-left">
+                                    <input readonly="true" type="text" id="form_mobile" name="form_mobile" t-att-value="visitor.mobile" style="width: 100%;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row mb-1" style="align-items: center;">
+                                <div class="col-lg-4 col-md-6"><strong>Email</strong></div>
+                                <div class="col-lg-8 col-md-6 float-left">
+                                    <input readonly="true" type="text" id="form_mail" name="form_mail" t-att-value="visitor.mail" style="width: 100%;" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <strong>Check In / Out</strong>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row mb-1" style="align-items: center;">
+                                <div class="col-lg-4 col-md-6"><strong>Check In</strong></div>
+                                <div class="col-lg-8 col-md-6 float-left">
+                                    <div id="formdatetimepicker1" data-target-input="nearest" style="display: flex;">
+                                        <input
+                                            type="text"
+                                            id="form_check_in"
+                                            t-att-value="visitor.check_in_str"
+                                            class="form-control datetimepicker-input o_website_form_input"
+                                            data-target="#formdatetimepicker1"
+                                            name="Custom Date &amp; Time"
+                                            style="border-top-right-radius: 0; border-bottom-right-radius: 0;"
+                                            readonly="true"
+                                        />
+                                        <div class="input-group-append" data-target="#formdatetimepicker1" data-toggle="datetimepicker">
+                                            <div class="input-group-text" style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row mb-1" style="align-items: center;">
+                                <div class="col-lg-4 col-md-6"><strong>Check Out</strong></div>
+                                <div class="col-lg-8 col-md-6 float-left">
+                                    <div id="formdatetimepicker2" data-target-input="nearest" style="display: flex;">
+                                        <input
+                                            type="text"
+                                            id="form_check_out"
+                                            t-att-value="visitor.check_out_str"
+                                            class="form-control datetimepicker-input o_website_form_input"
+                                            data-target="#formdatetimepicker2"
+                                            name="Custom Date &amp; Time"
+                                            style="border-top-right-radius: 0; border-bottom-right-radius: 0;"
+                                            readonly="true"
+                                        />
+                                        <div class="input-group-append" data-target="#formdatetimepicker2" data-toggle="datetimepicker">
+                                            <div class="input-group-text" style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row mb-1" style="align-items: center;">
+                                <div class="col-lg-4 col-md-6"><strong>Duration</strong></div>
+                                <div class="col-lg-8 col-md-6 float-left">
+                                    <span readonly="true" type="text" id="form_duration" name="form_duration" t-field="visitor.duration" style="width: 100%;" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <strong>Visit Details</strong>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row mb-1" style="align-items: center;">
+                                <div class="col-lg-4 col-md-6"><strong>Visit Location</strong></div>
+                                <div class="col-lg-8 col-md-6 float-left">
+                                    <select id="form_destination_id" style="width: 100%;" disabled="true">
+                                        <t t-foreach="request.env['res.partner'].sudo().search([])" t-as="destination">
+                                            <t t-if="destination.id==request.env.user.current_location_id.id">
+                                                <option t-att-selected="True" t-att-value="destination.id"><t t-esc="destination.name" /></option>
+                                            </t>
+                                            <t t-if="not destination.id==request.env.user.current_location_id.id">
+                                                <option t-att-value="destination.id"><t t-esc="destination.name" /></option>
+                                            </t>
+                                        </t>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row mb-1" style="align-items: center;">
+                                <div class="col-lg-4 col-md-6"><strong>Visit Type</strong></div>
+                                <div class="col-lg-8 col-md-6 float-left">
+                                    <select id="form_visit_type_id" style="width: 100%;" disabled="true">
+                                        <t t-foreach="request.env['sh.visitor.type'].sudo().search([])" t-as="visit_type">
+                                            <t t-if="visit_type.name==visitor.visit_type_id.name">
+                                                <option t-att-selected="True" t-att-value="visitor.visit_type_id.id"><t t-esc="visit_type.name" /></option>
+                                            </t>
+                                            <t t-if="not visit_type.name==visitor.visit_type_id.name">
+                                                <option t-att-value="visit_type.id"><t t-esc="visit_type.name" /></option>
+                                            </t>
+                                        </t>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row mb-1" style="align-items: center;">
+                                <div class="col-lg-4 col-md-6"><strong>Visit Category</strong></div>
+                                <div class="col-lg-8 col-md-6 float-left">
+                                    <select id="form_visit_categ_id" style="width: 100%;" disabled="true">
+                                        <t t-foreach="request.env['sh.visitor.category'].sudo().search([])" t-as="visit_categ">
+                                            <t t-if="visit_categ.name==visitor.visit_categ_id.name">
+                                                <option t-att-selected="True" t-att-value="visitor.visit_categ_id.id"><t t-esc="visit_categ.name" /></option>
+                                            </t>
+                                            <t t-if="not visit_categ.name==visitor.visit_categ_id.name">
+                                                <option t-att-value="visit_categ.id"><t t-esc="visit_categ.name" /></option>
+                                            </t>
+                                        </t>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-12 mb-1">
+                            <strong>Contact Details</strong>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row mb-1" style="align-items: center;">
+                                <div class="col-lg-4 col-md-6"><strong>Reference</strong></div>
+                                <div class="col-lg-8 col-md-6 float-left">
+                                    <input readonly="true" type="text" id="form_reference" name="form_reference" t-att-value="visitor.reference" style="width: 100%;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row mb-1" style="align-items: center;">
+                                <div class="col-lg-4 col-md-6"><strong>Employee</strong></div>
+                                <div class="col-lg-8 col-md-6 float-left">
+                                    <select id="form_employee_id" style="width: 100%;" disabled="true">
+                                        <t t-foreach="request.env['hr.employee'].sudo().search([])" t-as="employee_id">
+                                            <t t-if="employee_id.name==visitor.employee_id.name">
+                                                <option t-att-selected="True" t-att-value="visitor.employee_id.id"><t t-esc="employee_id.name" style="width: 100%;" /></option>
+                                            </t>
+                                            <t t-if="not employee_id.name==visitor.employee_id.name">
+                                                <option t-att-value="employee_id.id"><t t-esc="employee_id.name" /></option>
+                                            </t>
+                                        </t>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <strong>Purpose</strong>
+                </div>
+                <div class="col-lg-12">
+                    <textarea type="textarea" readonly="true" class="form-control" id="form_purpose" name="form_purpose" placeholder="Type here..."><t t-esc="visitor.purpose"/></textarea>
+                </div>
+            </div>
+        </div>
+    </template>
+</odoo>

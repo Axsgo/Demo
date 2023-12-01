@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="meeting_request_tree_view" model="ir.ui.view">
+        <field name="name">meeting.request.tree</field>
+        <field name="model">meeting.request</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="pass_details_no" />
+                <field name="crt_date" />
+                <field name="partner_name" />
+                <field name="mobile" />
+                <field name="employee_id" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <!--Form View -->
+    <record id="meeting_request_form_view" model="ir.ui.view">
+        <field name="name">meeting.request.form</field>
+        <field name="model">meeting.request</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,submitted"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1" />
+                        </h1>
+                    </div>
+                    <group>
+                    </group>
+                    <h2 style="color:#556ee6 !important;font-weight:bold;text-align:left">If you have meeting invite or appointment already, Please enter Meeting Invite No or please enter the details</h2>
+                    <group >
+                    </group>
+                    <group>
+                        <group string="">
+                            <field name="meeting_call_no" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <field name="mobile" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <field name="partner_name" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <field name="mail" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <field name="company_name" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <field name="employee_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <field name="appointment" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <field name="crt_date" invisible="1"/>
+                        </group>
+                        <group >
+                            
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="visit_purpose" string="Purpose">
+                            <form>
+                                <field name="purpose" placeholder="Purpose for Visit..." attrs="{'readonly':[('state','!=','draft')]}"/>
+                            </form>
+                        </page>
+                    </notebook>
+                    <group>
+                        <group>
+                            <field name="pass_details_no" readonly="1" attrs="{'invisible':[('state','!=','submitted')]}"/>
+                        </group>
+                    </group>
+                    <button name="entry_submit" string="Submit" type="object" class="oe_highlight" states='draft'/>
+                    <button name="print_pdf" string="Print Pass" type="object" class="oe_highlight" states='submitted'/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="meeting_request_search_view" model="ir.ui.view">
+        <field name="name">meeting.request.search</field>
+        <field name="model">meeting.request</field>
+        <field name="arch" type="xml">
+            <search>
+                <group expand="0" string="Group By">
+                    <filter string="Status" name="state" context="{'group_by':'state'}" />
+                </group>
+                <group expand="0" string="Group By">
+                    <filter string="Meet to whom?" name="employee_id" context="{'group_by':'employee_id'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="meeting_request_action" model="ir.actions.act_window">
+        <field name="name">Meeting Request</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">meeting.request</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="sh_meeting_request_main_menu" action="meeting_request_action" name="Meeting Request" groups="meeting_request_user_group" />
+    <menuitem id="sh_visitor_management_request_main_menu" parent="sh_meeting_request_main_menu" name="Meeting Request" sequence="1" />
+
+    <menuitem id="meeting_request_menu" parent="sh_visitor_management_request_main_menu" action="meeting_request_action" name="Meeting Request" groups="meeting_request_user_group" sequence="2"/>
+</odoo>

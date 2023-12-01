@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Visitor Management Details Tree View -->
+    <record id="sh_visitor_details_tree_view" model="ir.ui.view">
+        <field name="name">sh.visitor.details.tree</field>
+        <field name="model">sh.visitor.details</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" string="Pass No"/>
+                <field name="visitor_name" string="Visitor Name"/>
+                <field name="check_in" />
+                <field name="check_out" />
+                <field name="employee_id" string="Meet to whom?"/>
+                <field name="visit_type_id" />
+                <field name="visit_categ_id" />
+                <field name="visitors_type" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Visitor Management Details Form View -->
+    <record id="sh_visitor_details_form_view" model="ir.ui.view">
+        <field name="name">sh.visitor.details.form</field>
+        <field name="model">sh.visitor.details</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name = "send_mail" type = "object" string = "Send Mail" class = "oe_highlight" attrs="{'invisible':['|',('visitors_type','=','invited'),('state','in',('mail_sent','approved','closed'))]}"/>
+                    <button name = "entry_approve" type = "object" string = "Approve" class = "oe_highlight" attrs="{'invisible':['|',('visitors_type','!=','invited'),('state','in',('approved','closed'))]}"/>
+                    <button name = "entry_close" type = "object" string = "Close" class = "oe_highlight" states="approved"/>
+                    <field name="state" widget="statusbar" statusbar_visible="requested,mail_sent,approved,closed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Visitor Details">
+                            <field name="customer_type" widget="radio" options="{'horizontal': true}" attrs="{'readonly':[('state','=','closed')]}"/>
+                            <field name="partner_id" attrs="{'invisible':[('customer_type','=','walk_in')],'readonly':[('state','=','closed')]}"/>
+                            <field name="visitor_name" attrs="{'readonly':[('state','=','closed')]}"/>
+                            <field name="company" attrs="{'readonly':[('state','=','closed')]}"/>
+                            <field name="phone" attrs="{'readonly':[('state','=','closed')]}"/>
+                            <field name="mobile" attrs="{'readonly':[('state','=','closed')]}"/>
+                            <field name="mail" attrs="{'readonly':[('state','=','closed')]}"/>
+                        </group>
+                        <group string="Check In/Out">
+                            <field name="check_in" attrs="{'readonly':[('state','=','closed')]}"/>
+                            <field name="check_out" attrs="{'readonly':[('state','=','closed')]}"/>
+                            <field name="duration" widget="float_time" attrs="{'readonly':[('state','=','closed')]}"/>
+                            <field name="visitors_type" readonly="1"/>
+                        </group>
+                        <group string="Visit Details">
+                            <field name="destination_id"  attrs="{'readonly':[('state','=','closed')]}"/>
+                            <field name="visit_type_id" attrs="{'readonly':[('state','=','closed')]}"/>
+                            <field name="visit_categ_id" attrs="{'readonly':[('state','=','closed')]}"/>
+                            <field name="request_ref" readonly="1"/>
+                            <field name="call_ref" readonly="1"/>
+                        </group>
+                        <group string="Contact Details">
+                            <field name="reference" attrs="{'readonly':[('state','=','closed')]}"/>
+                            <field name="employee_id" attrs="{'readonly':[('state','=','closed')]}"/>
+                            <field name="department" attrs="{'readonly':[('state','=','closed')]}"/>
+                            <field name="user_id" attrs="{'readonly':[('state','=','closed')]}"/>
+                            <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}" attrs="{'readonly':[('state','=','closed')]}"/>
+                            <field name="check_in_str" invisible="1" />
+                            <field name="check_out_str" invisible="1" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="visit_purpose" string="Purpose">
+                            <form>
+                                <field name="purpose" placeholder="Purpose for Visit..." attrs="{'readonly':[('state','=','closed')]}"/>
+                            </form>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Visitor Management Details Search View -->
+    <record id="sh_visitor_details_search_view" model="ir.ui.view">
+        <field name="name">sh.visitor.details.search</field>
+        <field name="model">sh.visitor.details</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Pass No" filter_domain="[('name', 'ilike', self)]" />
+                <field name="visitor_name" filter_domain="['|','|','|',('visitor_name', 'ilike', self),('employee_id', 'ilike', self),('visit_categ_id', 'ilike', self),('visit_type_id', 'ilike', self)]" />
+                <field name="employee_id" filter_domain="[('employee_id', 'ilike', self)]" />
+                <field name="visit_categ_id" filter_domain="[('visit_categ_id', 'ilike', self)]" />
+                <field name="visit_type_id" filter_domain="[('visit_type_id', 'ilike', self)]" />
+                <group expand="0" string="Group By">
+                    <filter string="Visit Category" name="visit_categ_id" context="{'group_by':'visit_categ_id'}" />
+                </group>
+                <group expand="0" string="Group By">
+                    <filter string="Visit Type" name="visit_type_id" context="{'group_by':'visit_type_id'}" />
+                </group>
+                <group expand="0" string="Group By">
+                    <filter string="Type of Visitors" name="visitors_type" context="{'group_by':'visitors_type'}" />
+                </group>
+                <group expand="0" string="Group By">
+                    <filter string="Employee" name="employee_id" context="{'group_by':'employee_id'}" />
+                </group>
+                <group expand="0" string="Group By">
+                    <filter string="Status" name="state" context="{'group_by':'state'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Visitor Management Details Action -->
+    <record id="sh_visitor_details_action" model="ir.actions.act_window">
+        <field name="name">Visitor Details</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sh.visitor.details</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="sh_visitor_management_main_menu" action="sh_visitor_details_action" name="Visitor Management" groups="sh_visitor_management.group_sh_visitor_management_user" />
+    <menuitem id="sh_visitor_management_visitor_main_menu" parent="sh_visitor_management_main_menu" name="Visitor" sequence="1" />
+    <menuitem id="sh_visitor_management_visitor_details_menu" parent="sh_visitor_management_visitor_main_menu" action="sh_visitor_details_action" name="Visitor Details" />
+</odoo>

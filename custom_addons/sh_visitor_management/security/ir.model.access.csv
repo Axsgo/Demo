@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sh_visitor_category,access_sh_visitor_category,model_sh_visitor_category,base.group_user,1,1,1,1
+access_sh_visitor_type,access_sh_visitor_type,model_sh_visitor_type,base.group_user,1,1,1,1
+access_sh_visitor_details,access_sh_visitor_details,model_sh_visitor_details,base.group_user,1,1,1,1
+access_meeting_request,access_sh_meeting_request,model_meeting_request,base.group_user,1,1,1,1
+access_meeting_call,access_sh_meeting_call,model_meeting_call,base.group_user,1,1,1,1

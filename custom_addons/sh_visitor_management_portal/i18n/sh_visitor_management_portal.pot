@@ -1,0 +1,390 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sh_visitor_management_portal
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-19 11:33+0000\n"
+"PO-Revision-Date: 2020-10-19 11:33+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "<em class=\"font-weight-normal text-muted\">Visit Category</em>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "<em class=\"font-weight-normal text-muted\">Visit Type</em>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.portal_visitor_form_template
+msgid "<i class=\"fa fa-download\"/> Print Pass"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "<i class=\"fa fa-pencil-square-o\" title=\"Edit\"/>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "<span>Check In</span>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "<span>Check Out</span>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "<span>Company</span>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "<span>Duration</span>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "<span>Email</span>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "<span>Employee</span>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "<span>Mobile</span>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "<span>Partner</span>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "<span>Phone</span>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "<span>Reference</span>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "<span>Visit Category</span>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "<span>Visit Location</span>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "<span>Visit Type</span>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "<span>Visitor Name</span>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "<strong style=\"font-size:18px;\">Check In/Out</strong>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "<strong style=\"font-size:18px;\">Contact Details</strong>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "<strong style=\"font-size:18px;\">Purpose</strong>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "<strong style=\"font-size:18px;\">Visit Details</strong>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "<strong style=\"font-size:18px;\">Visitor Details</strong>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_portal_content
+msgid "<strong>Check In / Out</strong>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_portal_content
+msgid "<strong>Check In</strong>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_portal_content
+msgid "<strong>Check Out</strong>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_portal_content
+msgid "<strong>Company</strong>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_portal_content
+msgid "<strong>Contact Details</strong>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_portal_content
+msgid "<strong>Duration</strong>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_portal_content
+msgid "<strong>Email</strong>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_portal_content
+msgid "<strong>Employee</strong>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_portal_content
+msgid "<strong>Mobile</strong>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_portal_content
+msgid "<strong>Partner</strong>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_portal_content
+msgid "<strong>Phone</strong>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_portal_content
+msgid "<strong>Purpose</strong>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_portal_content
+msgid "<strong>Reference</strong>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_portal_content
+msgid "<strong>Visit Category</strong>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_portal_content
+msgid "<strong>Visit Details</strong>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_portal_content
+msgid "<strong>Visit Location</strong>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_portal_content
+msgid "<strong>Visit Type</strong>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_portal_content
+msgid "<strong>Visitor Details</strong>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_portal_content
+msgid "<strong>Visitor Name</strong>"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "Action"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "Check In"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "Check Out"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "Choose Here..."
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "Close"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "Create"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "Create Visitor"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model:ir.model.fields,field_description:sh_visitor_management_portal.field_res_users__current_location_id
+msgid "Current Location"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model:ir.model.fields,field_description:sh_visitor_management_portal.field_res_users__current_location_boolean
+msgid "Current Location Boolean"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model:ir.model.fields,field_description:sh_visitor_management_portal.field_res_users__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_portal_content
+msgid "Edit"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "Employee"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.portal_visitor_form_template
+msgid "History"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model:ir.model.fields,field_description:sh_visitor_management_portal.field_res_users__id
+msgid "ID"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model:ir.model.fields,field_description:sh_visitor_management_portal.field_res_users____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: code:addons/sh_visitor_management_portal/controllers/portal.py:0
+#, python-format
+msgid "Name"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: code:addons/sh_visitor_management_portal/controllers/portal.py:0
+#, python-format
+msgid "Newest"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: code:addons/sh_visitor_management_portal/controllers/portal.py:0
+#, python-format
+msgid "None"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "Number"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "Print"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.portal_visitor_form_template
+msgid "Print Pass"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_portal_content
+msgid "Save"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "Submit"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "There are currently no visitors."
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_portal_content
+msgid "Type here..."
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model:ir.model,name:sh_visitor_management_portal.model_res_users
+msgid "Users"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: code:addons/sh_visitor_management_portal/controllers/portal.py:0
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+#, python-format
+msgid "Visit Category"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: code:addons/sh_visitor_management_portal/controllers/portal.py:0
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+#, python-format
+msgid "Visit Type"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.sh_visitor_management_portal_my_home
+msgid "Visitor"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "Visitor Name"
+msgstr ""
+
+#. module: sh_visitor_management_portal
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.sh_visitor_management_portal_menu
+#: model_terms:ir.ui.view,arch_db:sh_visitor_management_portal.visitor_my_visitor
+msgid "Visitors"
+msgstr ""

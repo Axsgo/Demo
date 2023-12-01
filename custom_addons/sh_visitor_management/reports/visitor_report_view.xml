@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- Visitor Rerpot -->
+    <template id="sh_visitor_management_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page" style="padding-top: 0px;">
+                        <h1 style="text-align: center;">
+                            <span t-field="doc.name"></span>
+                        </h1>
+                        <div class="row">
+                            <div class="col-6">
+                                <b>Check In : </b>
+                                <span t-field="doc.check_in"></span>
+                            </div>
+                            <div class="col-6" style="text-align: right;">
+                                <b>Check Out : </b>
+                                <span t-field="doc.check_out"></span>
+                            </div>
+                        </div>
+
+                        <h5>
+                            <b>Visitor Details :</b>
+                        </h5>
+                        <table width="100%">
+                            <tr>
+                                <td style="border: 1px lightgrey solid; width: 20%; padding: 3px 3px 3px 15px;">
+                                    <strong>Name</strong>
+                                </td>
+                                <td style="border: 1px lightgrey solid; padding: 3px 3px 3px 15px;">
+                                    <span t-field="doc.visitor_name"></span>
+                                </td>
+                                <td style="border: 1px lightgrey solid; width: 20%; padding: 3px 3px 3px 15px;">
+                                    <strong>Company</strong>
+                                </td>
+                                <td style="border: 1px lightgrey solid; padding: 3px 3px 3px 15px;">
+                                    <span t-field="doc.company"></span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="border: 1px lightgrey solid; width: 20%; padding: 3px 3px 3px 15px;">
+                                    <strong>Phone</strong>
+                                </td>
+                                <td style="border: 1px lightgrey solid; padding: 3px 3px 3px 15px;">
+                                    <span t-field="doc.phone"></span>
+                                </td>
+                                <td style="border: 1px lightgrey solid; width: 20%; padding: 3px 3px 3px 15px;">
+                                    <strong>Mobile</strong>
+                                </td>
+                                <td style="border: 1px lightgrey solid; padding: 3px 3px 3px 15px;">
+                                    <span t-field="doc.mobile"></span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="border: 1px lightgrey solid; width: 20%; padding: 3px 3px 3px 15px;">
+                                    <strong>Email</strong>
+                                </td>
+                                <td style="border: 1px lightgrey solid; padding: 3px 3px 3px 15px;" colspan="3">
+                                    <span t-field="doc.mail"></span>
+                                </td>
+                            </tr>
+                        </table>
+                        <br />
+
+                        <div class="row">
+                            <div class="col-6">
+                                <h5>
+                                    <b>Visit Details :</b>
+                                </h5>
+                                <table width="100%">
+                                    <tr>
+                                        <td style="border: 1px lightgrey solid; padding: 3px 3px 3px 15px;">
+                                            <strong>Visit Destination</strong>
+                                        </td>
+                                        <td style="border: 1px lightgrey solid; padding: 3px 3px 3px 15px;">
+                                            <span t-field="doc.destination_id"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px lightgrey solid; padding: 3px 3px 3px 15px;">
+                                            <strong>Visit Type</strong>
+                                        </td>
+                                        <td style="border: 1px lightgrey solid; padding: 3px 3px 3px 15px;">
+                                            <span t-field="doc.visit_type_id"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px lightgrey solid; padding: 3px 3px 3px 15px;">
+                                            <strong>Visit Category</strong>
+                                        </td>
+                                        <td style="border: 1px lightgrey solid; padding: 3px 3px 3px 15px;">
+                                            <span t-field="doc.visit_categ_id"></span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-6">
+                                <h5>
+                                    <b>Contact Details :</b>
+                                </h5>
+                                <table width="100%">
+                                    <tr>
+                                        <td style="border: 1px lightgrey solid; padding: 3px 3px 3px 15px;">
+                                            <strong>Reference</strong>
+                                        </td>
+                                        <td style="border: 1px lightgrey solid; padding: 3px 3px 3px 15px;">
+                                            <span t-field="doc.reference"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px lightgrey solid; padding: 3px 3px 3px 15px;">
+                                            <strong>Employee</strong>
+                                        </td>
+                                        <td style="border: 1px lightgrey solid; padding: 3px 3px 3px 15px;">
+                                            <span t-field="doc.employee_id"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px lightgrey solid; padding: 3px 3px 3px 15px;">
+                                            <strong>Department</strong>
+                                        </td>
+                                        <td style="border: 1px lightgrey solid; padding: 3px 3px 3px 15px;">
+                                            <span t-field="doc.department"></span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <br />
+                        <h5>
+                            <b>Purpose :</b>
+                        </h5>
+                        <p>
+                            <span t-field="doc.purpose"></span>
+                        </p>
+                        <div class="col-12" style="padding: 50px 3px 3px 15px;">
+                            <table width="100%" border="3">
+                                <tr>
+                                    <td style="padding: 3px 3px 3px 15px; border-style: hidden;">
+                                        <span t-field="doc.visitor_sign"></span>
+                                    </td>
+                                    <td style="padding: 3px 3px 3px 15px; border-style: hidden;">
+                                        <span t-field="doc.whom_to_meet_sign"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 3px 3px 3px 15px; border-style: hidden; text-align: center;">____________________________</td>
+                                    <td style="padding: 3px 3px 3px 15px; border-style: hidden; text-align: center;">____________________________</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 3px 3px 3px 15px; border-style: hidden; text-align: center;">Visitor</td>
+                                    <td style="padding: 3px 3px 3px 15px; border-style: hidden; text-align: center;">Whom to meet</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!-- Visitor Rerpot Action -->
+    <record id="visitor_report" model="ir.actions.report">
+        <field name="name">Pass Details</field>
+        <field name="model">sh.visitor.details</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sh_visitor_management.sh_visitor_management_report</field>
+        <field name="report_file">sh_visitor_management.sh_visitor_management_report</field>
+        <field name="print_report_name">'Print Pass - %s' % (object.name).replace('/', '')</field>
+        <field name="binding_model_id" ref="model_sh_visitor_details" />
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

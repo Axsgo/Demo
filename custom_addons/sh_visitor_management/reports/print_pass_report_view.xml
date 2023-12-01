@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- Visitor Rerpot -->
+    <template id="pass_details_initial_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page" style="padding-top: 0px;">
+                        <h1 style="text-align: center;">
+                            <span t-field="doc.pass_details_no"></span>
+                        </h1>
+                        <h5>
+                            <b>Visitor Details :</b>
+                        </h5>
+                        <table width="100%">
+                            <tr>
+                                <td style="border: 1px lightgrey solid; width: 20%; padding: 3px 3px 3px 15px;">
+                                    <strong>Meeting Invite No</strong>
+                                </td>
+                                <td style="border: 1px lightgrey solid; padding: 3px 3px 3px 15px;">
+                                    <span t-field="doc.meeting_call_no"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px lightgrey solid; width: 20%; padding: 3px 3px 3px 15px;">
+                                    <strong>Mobile</strong>
+                                </td>
+                                <td style="border: 1px lightgrey solid; padding: 3px 3px 3px 15px;">
+                                    <span t-field="doc.mobile"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px lightgrey solid; width: 20%; padding: 3px 3px 3px 15px;">
+                                    <strong>Name</strong>
+                                </td>
+                                <td style="border: 1px lightgrey solid; padding: 3px 3px 3px 15px;">
+                                    <span t-field="doc.partner_name"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px lightgrey solid; width: 20%; padding: 3px 3px 3px 15px;">
+                                    <strong>Email</strong>
+                                </td>
+                                <td style="border: 1px lightgrey solid; padding: 3px 3px 3px 15px;">
+                                    <span t-field="doc.mail"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px lightgrey solid; width: 20%; padding: 3px 3px 3px 15px;">
+                                    <strong>Company</strong>
+                                </td>
+                                <td style="border: 1px lightgrey solid; padding: 3px 3px 3px 15px;">
+                                    <span t-field="doc.company_name"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px lightgrey solid; width: 20%; padding: 3px 3px 3px 15px;">
+                                    <strong>Meet to whom?</strong>
+                                </td>
+                                <td style="border: 1px lightgrey solid; padding: 3px 3px 3px 15px;">
+                                    <span t-field="doc.employee_id.name"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px lightgrey solid; width: 20%; padding: 3px 3px 3px 15px;">
+                                    <strong>Appointment</strong>
+                                </td>
+                                <td style="border: 1px lightgrey solid; padding: 3px 3px 3px 15px;">
+                                    <span t-field="doc.appointment"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px lightgrey solid; width: 20%; padding: 3px 3px 3px 15px;">
+                                    <strong>Purpose</strong>
+                                </td>
+                                <td style="border: 1px lightgrey solid; padding: 3px 3px 3px 15px;">
+                                    <span t-field="doc.purpose"></span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!-- Visitor Rerpot Action -->
+    <record id="pass_details_initial_report_pdf" model="ir.actions.report">
+        <field name="name">Pass Details</field>
+        <field name="model">meeting.request</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sh_visitor_management.pass_details_initial_report</field>
+        <field name="report_file">sh_visitor_management.pass_details_initial_report</field>
+        <field name="print_report_name">'Print Pass - %s' % (object.pass_details_no).replace('/', '')</field>
+        <field name="binding_model_id" ref="model_meeting_request" />
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
